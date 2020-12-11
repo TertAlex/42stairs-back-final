@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { DataApiModule } from './data-api/data-api.module';
 import { TeamsModule } from './teams/teams.module';
+import { GamesModule } from './games/games.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { TeamsModule } from './teams/teams.module';
       load: [configuration],
     }),
     TeamsModule,
+    GamesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -2,14 +2,15 @@ import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { Team } from '../models/team';
 import { ITeamCreateDto } from '../dto/team/team-create.dto';
+import { ITeamFiler } from '../dto/team/team.filter';
 
 @Injectable()
 export class TeamsRepository {
   constructor(@Inject('TEAM_MODEL') private teamModel: Model<Team>) {
   }
 
-  public async saveTeams(teams: ITeamCreateDto[]) {
-    const entities = [];
+  public async saveTeams(teams: ITeamCreateDto[]): Promise<Team[]> {
+    const entities: Team[] = [];
     for (const team of teams) {
       const entity = await this.createTeam(team);
       entities.push(entity);
@@ -25,8 +26,8 @@ export class TeamsRepository {
     );
   }
 
-  public async getTeams() {
-    return await this.teamModel.find().exec();
+  public async getTeams(filter: ITeamFiler) {
+    return await this.teamModel.find({ name: { $regex: filter?.nameSearch ?? '', $options: 'i' } }).exec();
   }
 
   public async getTeam(id: string): Promise<Team> {

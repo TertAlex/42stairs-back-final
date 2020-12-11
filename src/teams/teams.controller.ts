@@ -1,15 +1,16 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { TeamsService } from './teams.service';
 import { ITeamDto } from '../dto/team/team.dto';
 import { ITeamCreateDto } from '../dto/team/team-create.dto';
+import { ITeamFiler } from '../dto/team/team.filter';
 
 @Controller('teams')
 export class TeamsController {
   constructor(private readonly teamsService: TeamsService) {}
 
   @Get()
-  public getTeams(): Promise<ITeamDto[]> {
-    return this.teamsService.getTeams();
+  public getTeams(@Query() query: ITeamFiler): Promise<ITeamDto[]> {
+    return this.teamsService.getTeams(query);
   }
 
   @Get(':id')
