@@ -7,6 +7,7 @@ import configuration from './config/configuration';
 import { DataApiModule } from './data-api/data-api.module';
 import { TeamsModule } from './teams/teams.module';
 import { GamesModule } from './games/games.module';
+import { StatModule } from './stat/stat.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { GamesModule } from './games/games.module';
     }),
     TeamsModule,
     GamesModule,
+    StatModule,
   ],
   controllers: [AppController],
   providers: [AppService],

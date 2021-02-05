@@ -1,10 +1,9 @@
 import { Document } from 'mongoose';
-import { Team } from './team';
 
 export interface Game extends Document {
   date: Date;
-  homeTeam: Team;
-  awayTeam: Team;
+  homeTeamId: string;
+  awayTeamId: string;
   homeTeamGoals: number;
   awayTeamGoals: number;
 }

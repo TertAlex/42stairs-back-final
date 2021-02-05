@@ -7,8 +7,7 @@ import { ITeamFiler } from '../dto/team/team.filter';
 
 @Injectable()
 export class TeamsService {
-  constructor(private readonly teamsRepository: TeamsRepository) {
-  }
+  constructor(private readonly teamsRepository: TeamsRepository) {}
 
   public async getTeams(filter: ITeamFiler): Promise<ITeamDto[]> {
     const teamModels = await this.teamsRepository.getTeams(filter);

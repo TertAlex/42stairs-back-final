@@ -3,6 +3,7 @@ import { GamesRepository } from '../database/games.repository';
 import { GameMapper } from './game.mapper';
 import { IGameDto } from '../dto/game/game.dto';
 import { IGameCreateDto } from '../dto/game/game-create.dto';
+import { IGamesFilter } from '../dto/game/games.filter';
 
 @Injectable()
 export class GamesService {
@@ -20,5 +21,9 @@ export class GamesService {
   public async createGame(gameCreateDto: IGameCreateDto): Promise<IGameDto> {
     const gameModel = await this.gamesRepository.createGame(gameCreateDto);
     return GameMapper.IGameDtoFromGame(gameModel);
+  }
+
+  public async getGames(filter: IGamesFilter) {
+    return await this.gamesRepository.getGames(filter);
   }
 }

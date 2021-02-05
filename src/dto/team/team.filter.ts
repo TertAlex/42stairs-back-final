@@ -1,3 +1,3 @@
 export interface ITeamFiler {
-  nameSearch: string;
+  nameSearch?: string;
 }

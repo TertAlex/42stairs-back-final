@@ -2,8 +2,8 @@ import { ITeamDto } from '../team/team.dto';
 
 export interface IGameDto {
   date: Date;
-  homeTeam: ITeamDto;
-  awayTeam: ITeamDto;
+  homeTeamId: string;
+  awayTeamId: string;
   homeTeamGoals: number;
   awayTeamGoals: number;
 }
