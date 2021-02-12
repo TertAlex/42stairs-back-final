@@ -97,16 +97,26 @@ export class StatService {
   }
 
   private countScored(games: Game[], teamId: any): number {
-    return (
-      games.filter(x => x.homeTeamId == teamId).reduce((sum, current) => sum + current.homeTeamGoals, 0) +
-      games.filter(x => x.awayTeamId == teamId).reduce((sum, current) => sum + current.awayTeamGoals, 0)
+    return games.reduce(
+      (sum, current) =>
+        current.homeTeamId == teamId
+          ? sum + current.homeTeamGoals
+          : current.awayTeamId == teamId
+          ? sum + current.awayTeamGoals
+          : sum,
+      0,
     );
   }
 
   private countConceded(games: Game[], teamId: any): number {
-    return (
-      games.filter(x => x.homeTeamId == teamId).reduce((sum, current) => sum + current.awayTeamGoals, 0) +
-      games.filter(x => x.awayTeamId == teamId).reduce((sum, current) => sum + current.homeTeamGoals, 0)
+    return games.reduce(
+      (sum, current) =>
+        current.homeTeamId == teamId
+          ? sum + current.awayTeamGoals
+          : current.awayTeamId == teamId
+          ? sum + current.homeTeamGoals
+          : sum,
+      0,
     );
   }
 }
